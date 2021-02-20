@@ -28,8 +28,7 @@ export default {
   },
   computed: {
     userId() {
-      // return JSON.parse(localStorage.getItem('user'))._id;
-      return '603131ac1cca7ca55e5db17e';
+      return JSON.parse(localStorage.getItem('user'))._id;
     },
     otherUser() {
       return this.chat.userIds.find(user => user._id !== this.userId);

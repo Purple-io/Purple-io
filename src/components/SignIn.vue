@@ -59,7 +59,7 @@ export default {
       await axios.post('http://localhost:5000/login', data)
       .then(response => {
         localStorage.setItem('user', JSON.stringify(response.data.user));
-        localStorage.setItem('token', JSON.stringify(response.data.token));
+        localStorage.setItem('token', response.data.token);
         window.location.href = '/home';
       })
       .catch(error => alert('An error occurred. Try again. ' + error));
