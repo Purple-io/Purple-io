@@ -1,0 +1,27 @@
+// Copyright © 2021 Brandon Li. All rights reserved.
+
+/**
+ * Shared constants that are used in style-sheets for the project.
+ *
+ * @author Brandon Li <brandon.li@berkeley.edu>
+ */
+
+// Max threshold for content.
+$widescreen-threshold: 1450px;
+
+// Responsive design thresholds.
+$desktop-threshold: 1300px;
+$laptop-threshold: 1100px;
+$tablet-threshold: 900px;
+$mobile-landscape-threshold: 700px;
+$iphone-se-landscape-threshold: 550px;
+$mobile-portrait-threshold: 400px;
+$iphone-se-portrait-threshold: 320px;
+
+// The size of 1 rem unit.
+$rem-size: 15px;
+
+// Function that converts px to rem based on $rem-size;
+@function px-to-rem($px) {
+  @return #{$px / $rem-size}rem;
+}
