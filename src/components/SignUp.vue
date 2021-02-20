@@ -71,7 +71,7 @@
         Passwords must match.
       </div>
     </div>
-    <button type='submit' class='btn btn-dark btn-lg btn-block'>Sign In</button>
+    <button type='submit' class='btn btn-dark btn-lg btn-block'>Sign Up</button>
 
     <p class='forgot-password text-right'> Already registered <a href='../sign-in'>sign in?</a></p>
   </form>
@@ -98,6 +98,10 @@ export default {
   },
   methods: {
     async submit() {
+      if (!this.$el.checkValidity()) {
+        return;
+      }
+
       const data = {
         email: this.$refs.email.value,
         firstName: this.$refs.firstName.value,

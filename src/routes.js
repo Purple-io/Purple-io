@@ -9,19 +9,19 @@
 
 module.exports = {
 
-  // root page
-  'index': {
-    entry: 'src/pages/index.js',
-    filename: 'index.html',
-    template: 'public/index.html',
-    title: 'Brandon Li'
-  },
-
   // sign-up page
   'sign-up': {
     entry: 'src/pages/sign-up/index.js',
     filename: 'sign-up/index.html',
     template: 'public/index.html',
     title: 'Sign Up - Purple'
+  },
+
+  // sign-in page
+  'sign-in': {
+    entry: 'src/pages/sign-in/index.js',
+    filename: 'sign-in/index.html',
+    template: 'public/index.html',
+    title: 'Sign In - Purple'
   }
 };
