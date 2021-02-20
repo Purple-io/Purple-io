@@ -7,15 +7,6 @@
  */
 
 import { createApp } from 'vue';
-import { gsap } from 'gsap';
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FadeEffect, SlideEffect, SlideExpoEffect } from '@/utils/gsap-effects';
 import index from '@/pages/index.vue';
-import '@/assets/styles/styles.scss';
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-gsap.registerEffect(FadeEffect);
-gsap.registerEffect(SlideEffect);
-gsap.registerEffect(SlideExpoEffect);
 createApp(index).mount('#app', true);

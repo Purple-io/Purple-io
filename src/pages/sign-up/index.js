@@ -8,6 +8,7 @@
 
 import { createApp } from 'vue';
 import index from '@/pages/sign-up/index.vue';
-import '@/assets/styles/styles.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@/assets/styles/sign-up.scss';
 
 createApp(index).mount('#app');
