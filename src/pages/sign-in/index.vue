@@ -10,6 +10,11 @@ import SignIn from '@/components/SignIn.vue';
 export default {
   components: {
     SignIn
+  },
+  created() {
+    if (localStorage.getItem('token')) {
+      window.location.href = '/home';
+    }
   }
 };
 </script>

@@ -23,5 +23,13 @@ module.exports = {
     filename: 'sign-in/index.html',
     template: 'public/index.html',
     title: 'Sign In - Purple'
-  }
+  },
+
+  // sign-in page
+  'home': {
+    entry: 'src/pages/home/index.js',
+    filename: 'home/index.html',
+    template: 'public/index.html',
+    title: 'Home - Purple'
+  },
 };

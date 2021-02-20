@@ -34,12 +34,6 @@
 import axios from 'axios';
 
 export default {
-  created() {
-    if (localStorage.getItem('token')) {
-      window.location.pathname = '/home';
-
-    }
-  },
   mounted() {
     const forms = document.querySelectorAll('.needs-validation');
 

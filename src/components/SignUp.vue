@@ -112,7 +112,7 @@ export default {
 
       await axios.post('http://localhost:5000/register', data)
       .then(() => {
-        window.location.pathname = '/home';
+        window.location.href = '/home';
       })
       .catch(() => alert('An error occurred. Try again.'));
     },
