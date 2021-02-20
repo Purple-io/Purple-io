@@ -27,7 +27,10 @@
       <input ref='mirror' v-model='topic' class='mirror form-control form-control-lg' required @input='validate'>
     </div>
 
-    <AffiliationSlider ref='affiliationSlider'/>
+    <AffiliationSlider
+      ref='affiliationSlider'
+      :default='default'
+    />
 
     <div>
       <BannedWordsInput ref='banned'/>
@@ -123,6 +126,11 @@ export default {
       else {
         this.$refs.multiselect.$el.children[0].classList.remove('invalid');
       }
+    }
+  },
+  computed: {
+    default() {
+      return localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).affiliation : null;
     }
   }
 };
