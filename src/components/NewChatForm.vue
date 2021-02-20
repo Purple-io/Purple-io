@@ -84,6 +84,11 @@ export default {
       ]
     };
   },
+  computed: {
+    default() {
+      return localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).affiliation : null;
+    }
+  },
   mounted() {
     const forms = document.querySelectorAll('.needs-validation');
 
@@ -126,11 +131,6 @@ export default {
       else {
         this.$refs.multiselect.$el.children[0].classList.remove('invalid');
       }
-    }
-  },
-  computed: {
-    default() {
-      return localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).affiliation : null;
     }
   }
 };
