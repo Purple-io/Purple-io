@@ -15,43 +15,133 @@
 !*-->
 
 <template>
-  <div class='vue-template'>
-    <form>
-      <h3>Sign Up</h3>
+  <form class='range-field needs-validation' novalidate @submit.prevent='submit'>
+    <h3>Sign Up</h3>
 
-      <div class='form-group'>
-        <label>Email address</label>
-        <input type='email' class='form-control form-control-lg'/>
-      </div>
+    <div class='form-group'>
+      <label for='email' class='form-label'>Email Address</label>
+      <input ref='email' id='email' type='email' class='form-control form-control-lg' required>
+      <small id='emailHelp' class='form-text text-muted'>We'll never share your email with anyone else.</small>
+    </div>
 
-      <div class='form-group'>
-        <label>First Name</label>
-        <input class='form-control form-control-lg'/>
-      </div>
+    <div class='form-group'>
+      <label>First Name</label>
+      <input ref='firstName' class='form-control form-control-lg' required>
+    </div>
 
-      <div class='form-group'>
-        <label>Last Name</label>
-        <input class='form-control form-control-lg'/>
-      </div>
+    <div class='form-group'>
+      <label>Last Name</label>
+      <input ref='lastName' class='form-control form-control-lg' required>
+    </div>
 
-      <div class='form-group'>
-        <label>Password</label>
-        <input type='password' class='form-control form-control-lg'/>
+    <div class='form-group'>
+      <label for='formControlRange'>Political Affiliation</label>
+      <div class='d-flex justify-content-center my-4'>
+        <span class='font-weight-bold purple-text mr-2 mt-1'>Democrat</span>
+        <input ref='affiliationSlider' class='border-0' type='range' min='-5' max='5'>
+        <span class='font-weight-bold purple-text ml-2 mt-1'>Republican</span>
       </div>
+    </div>
 
-      <div class='form-group'>
-        <label>Confirm Password</label>
-        <input type='password' class='form-control form-control-lg'/>
+    <div class='form-group'>
+      <label>Password</label>
+      <input
+        ref='password'
+        type='password'
+        class='form-control form-control-lg'
+        pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
+        required
+        @input='validateConfirm'
+      >
+      <div class='invalid-feedback'>
+        Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters
       </div>
-      <button type='submit' class='btn btn-dark btn-lg btn-block'>Sign In</button>
-    </form>
-  </div>
+    </div>
+
+    <div class='form-group'>
+      <label>Confirm Password</label>
+      <input
+        ref='confirmPassword'
+        type='password'
+        class='form-control form-control-lg'
+        required
+        @input='validateConfirm'
+      >
+      <div class='invalid-feedback'>
+        Passwords must match.
+      </div>
+    </div>
+    <button type='submit' class='btn btn-dark btn-lg btn-block'>Sign In</button>
+
+    <p class='forgot-password text-right'> Already registered <a href='../sign-in'>sign in?</a></p>
+  </form>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-}
+  mounted() {
+    const forms = document.querySelectorAll('.needs-validation');
+
+    Array.prototype.slice.call(forms)
+    .forEach(function(form) {
+      form.addEventListener('submit', function(event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+
+        form.classList.add('was-validated');
+      }, false);
+    });
+  },
+  methods: {
+    async submit() {
+      const data = {
+        email: this.$refs.email.value,
+        firstName: this.$refs.firstName.value,
+        lastName: this.$refs.lastName.value,
+        affiliation: this.$refs.affiliationSlider.value,
+        password: this.$refs.password.value
+      };
+
+      await axios.post('http://localhost:5000/register', data)
+      .then(() => {
+        window.location.pathname = '/home';
+      })
+      .catch(() => alert('An error occurred. Try again.'));
+    },
+    validateConfirm() {
+      const password = this.$refs.password;
+      const confirm = this.$refs.confirmPassword;
+
+      if (confirm.value === password.value) {
+        confirm.setCustomValidity('');
+      }
+      else {
+        confirm.setCustomValidity('Passwords do not match');
+      }
+    }
+  }
+};
 </script>
 
 <style scoped lang='scss'>
+
+form {
+  width: 500px;
+  margin: 50px auto;
+  border-radius: 15px;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+
+  & > div, & > h3 {
+    margin: 20px 0;
+  }
+
+  span {
+    margin: 0 20px;
+  }
+}
 </style>

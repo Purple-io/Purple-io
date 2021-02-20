@@ -7,6 +7,16 @@
  */
 
 * {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+* {
   box-sizing: border-box;
 }
 
@@ -19,8 +29,8 @@ body {
 
 body,
 html,
-.App,
-.vue-tempalte,
+#app,
+.vue-template,
 .vertical-center {
   width: 100%;
   height: 100%;
