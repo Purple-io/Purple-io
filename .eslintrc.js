@@ -1,4 +1,4 @@
-// Copyright © 2021 Brandon Li. All rights reserved.
+// Copyright © 2021 All rights reserved.
 
 /**
  * ESlint configuration file. See https://eslint.org/docs/user-guide/configuring for documentation of implementing

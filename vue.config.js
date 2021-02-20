@@ -1,4 +1,4 @@
-// Copyright © 2021 Brandon Li. All rights reserved.
+// Copyright © 2021 All rights reserved.
 
 /**
  * Vue configuration file. See https://cli.vuejs.org/config/.

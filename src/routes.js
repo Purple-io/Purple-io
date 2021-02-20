@@ -1,4 +1,4 @@
-// Copyright © 2021 Brandon Li. All rights reserved.
+// Copyright © 2021 All rights reserved.
 
 /**
  * Specifies the routes of the application. Corresponds to the `pages` object described in
