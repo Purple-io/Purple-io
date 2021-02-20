@@ -6,13 +6,12 @@
  * @author Brandon Li <brandon.li@berkeley.edu>
 !*-->
 
-<template>
-</template>
+<template/>
 
 <script>
 export default {
 
-}
+};
 </script>
 
 <style scoped lang='scss'>
