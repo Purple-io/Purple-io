@@ -34,14 +34,7 @@
       <input ref='lastName' class='form-control form-control-lg' required>
     </div>
 
-    <div class='form-group'>
-      <label for='formControlRange'>Political Affiliation</label>
-      <div class='d-flex justify-content-center my-4'>
-        <span class='font-weight-bold purple-text mr-2 mt-1'>Democrat</span>
-        <input ref='affiliationSlider' class='border-0' type='range' min='-5' max='5'>
-        <span class='font-weight-bold purple-text ml-2 mt-1'>Republican</span>
-      </div>
-    </div>
+    <AffiliationSlider ref='affiliationSlider'/>
 
     <div class='form-group'>
       <label>Password</label>
@@ -78,9 +71,13 @@
 </template>
 
 <script>
+import AffiliationSlider from '@/components/AffiliationSlider.vue';
 import axios from 'axios';
 
 export default {
+  components: {
+    AffiliationSlider
+  },
   mounted() {
     const forms = document.querySelectorAll('.needs-validation');
 
@@ -106,7 +103,7 @@ export default {
         email: this.$refs.email.value,
         firstName: this.$refs.firstName.value,
         lastName: this.$refs.lastName.value,
-        affiliation: this.$refs.affiliationSlider.value,
+        affiliation: this.$refs.affiliationSlider.getValue(),
         password: this.$refs.password.value
       };
 
@@ -114,7 +111,7 @@ export default {
       .then(() => {
         window.location.href = '/home';
       })
-      .catch(() => alert('An error occurred. Try again.'));
+      .catch(error => alert('An error occurred. Try again. ' + error));
     },
     validateConfirm() {
       const password = this.$refs.password;

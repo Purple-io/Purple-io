@@ -23,8 +23,10 @@ html {
 body {
   background: white !important;
   min-height: 100vh;
+  max-width: 100%;
   display: flex;
   font-weight: 400;
+  overflow-x: hidden;
 }
 
 body,

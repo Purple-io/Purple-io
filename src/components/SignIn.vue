@@ -56,9 +56,13 @@ export default {
         password: this.$refs.password.value
       };
 
-      const response = await axios.post('http://localhost:5000/login', data);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-      localStorage.setItem('token', JSON.stringify(response.data.token));
+      await axios.post('http://localhost:5000/login', data)
+      .then(response => {
+        localStorage.setItem('user', JSON.stringify(response.data.user));
+        localStorage.setItem('token', JSON.stringify(response.data.token));
+        window.location.href = '/home';
+      })
+      .catch(error => alert('An error occurred. Try again. ' + error));
     }
   }
 };

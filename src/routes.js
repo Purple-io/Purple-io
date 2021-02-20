@@ -25,11 +25,19 @@ module.exports = {
     title: 'Sign In - Purple'
   },
 
-  // sign-in page
+  // home page
   'home': {
     entry: 'src/pages/home/index.js',
     filename: 'home/index.html',
     template: 'public/index.html',
     title: 'Home - Purple'
   },
+
+  // new-chat page
+  'new-chat': {
+    entry: 'src/pages/new-chat/index.js',
+    filename: 'new-chat/index.html',
+    template: 'public/index.html',
+    title: 'New Chat - Purple'
+  }
 };
