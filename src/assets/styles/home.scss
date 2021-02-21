@@ -255,13 +255,27 @@ img{ max-width:100%;}
   float: right;
   width: 46%;
 }
-.input_msg_write input {
-  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
-  border: medium none;
-  color: #4c4c4c;
-  font-size: 15px;
-  min-height: 48px;
-  width: 100%;
+.input_msg_write {
+  display: flex;
+  align-items: center;
+
+  input {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    color: #4c4c4c;
+    font-size: 15px;
+    min-height: 48px;
+    width: 100%;
+  }
+  button {
+    background: #05728f;
+    border: darken(#05728f, 10%);
+    white-space: nowrap;
+    &:hover {
+      background: #05728f;
+      opacity: 0.9;
+    }
+  }
 }
 
 .type_msg {border-top: 1px solid #c4c4c4;position: relative;}
@@ -273,10 +287,11 @@ img{ max-width:100%;}
   cursor: pointer;
   font-size: 17px;
   height: 33px;
-  position: absolute;
   right: 0;
   top: 11px;
   width: 33px;
+  margin-right: 20px;
+  transform: scaleX(1.1);
 }
 .messaging { padding: 0 0 50px 0;}
 .msg_history {

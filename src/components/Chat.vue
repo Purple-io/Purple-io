@@ -21,6 +21,7 @@
       <div class="input_msg_write">
         <input ref='input' type="text" class="write_msg" placeholder="Type a message" @keydown.enter='send'/>
         <button class="msg_send_btn" type="button" @click='send'><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        <button type="button" class="btn btn-primary" @click='generateNews'>Generate News</button>
       </div>
     </div>
   </div>
@@ -43,6 +44,9 @@ export default {
     },
     scrollDown() {
       this.$refs.history.scrollTop = this.$refs.history.scrollHeight;
+    },
+    generateNews() {
+      this.$emit('generateNews');
     }
   }
 };

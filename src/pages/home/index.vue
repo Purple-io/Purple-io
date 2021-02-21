@@ -25,7 +25,7 @@
           <Pending :ref='p._id' :queue='p' @close='closePending(p)'/>
         </template>
     </div>
-    <Chat :messages='messages' @send='send' ref='chat'/>
+    <Chat :messages='messages' @send='send' ref='chat' @generateNews='generateNews'/>
   </div>
 </template>
 
@@ -107,6 +107,11 @@ export default {
 
     },
     async updateMessages() {
+      if (!this.selectedChat) {
+        this.messages = [];
+        return;
+      }
+
       const messages = await axios.get('http://localhost:5000/chat/getMessages', {
         params: {
           chatId: this.selectedChat._id
@@ -167,6 +172,7 @@ export default {
           }
         });
       }
+      await this.updateMessages();
     },
     async closePending(q) {
       this.pendingQueues = this.pendingQueues.filter(pendingQueues => pendingQueues._id !== q._id);
@@ -178,6 +184,35 @@ export default {
           Authorization: localStorage.getItem('token')
         }
       });
+    },
+    async generateNews() {
+      if (!this.selectedChat) {
+        this.messages = [];
+        return;
+      }
+      const response = await axios.get('http://localhost:5000/news', {
+        params: {
+          issue: this.selectedChat.issue,
+          user1Id: this.selectedChat.userIds[0]._id,
+          user2Id: this.selectedChat.userIds[1]._id
+        }
+      }, {
+        headers: {
+          Authorization: localStorage.getItem('token')
+        }
+      });
+
+      const message = `This is an automated message that sends a news article for discussion when the ` +
+        `conversation goes stale. News article: ${response.data.article.url}`
+
+      socket.emit('sendMessageNC', {
+        messageContent: message,
+        chatId: this.selectedChat._id,
+        userId: JSON.parse(localStorage.getItem('user'))._id
+      });
+
+      this.messages.push({ incoming: false, text: message, timestamp: moment().fromNow() });
+      this.$nextTick(() => this.$refs.chat.scrollDown());
     }
   }
 };
