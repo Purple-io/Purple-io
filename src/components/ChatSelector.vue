@@ -14,7 +14,7 @@
           {{ otherUser.firstName }} {{ otherUser.lastName }}
           <span class="chat_date">{{ format(chat.updatedAt) }}</span>
         </h5>
-        <p>Topic: {{ chat.issue }} </p><button @click='close' type="button" class="btn-close" aria-label="Close"></button>
+        <p>Topic: {{ chat.issue }} </p><button @click.stop='close' type="button" class="btn-close" aria-label="Close"></button>
         <p>Affiliation: {{ otherUser.affiliation }}</p>
       </div>
     </div>

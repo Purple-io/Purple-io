@@ -148,9 +148,9 @@ export default {
       this.$nextTick(() => this.$refs.chat.scrollDown());
     },
     async close(chat) {
-      this.chats = this.chats.filter(chat => chat._id !== chat._id);
+      this.chats = this.chats.filter(chatParam => chatParam._id !== chat._id);
 
-      await axios.delete('http://localhost:5000/chat/deleteChat', {
+      await axios.post('http://localhost:5000/chat/deleteChat', {
         chatId: chat._id
       }, {
         headers: {
