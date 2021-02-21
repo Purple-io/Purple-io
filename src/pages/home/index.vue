@@ -25,7 +25,7 @@
           <Pending :ref='p._id' :queue='p'/>
         </template>
     </div>
-    <Chat :messages='messages' @send='send'/>
+    <Chat :messages='messages' @send='send' ref='chat'/>
   </div>
 </template>
 
@@ -123,6 +123,7 @@ export default {
           timestamp: moment(data.createdAt, 'YYYY-MM-DDThh:mmTZD').fromNow()
         }
       });
+      this.$nextTick(() => this.$refs.chat.scrollDown());
     },
     newChat() {
       window.location.href = "/new-chat"
@@ -143,7 +144,8 @@ export default {
         }
       });
 
-      this.messages.push({ incoming: false, text: response.data, timestamp: moment().fromNow() })
+      this.messages.push({ incoming: false, text: response.data, timestamp: moment().fromNow() });
+      this.$nextTick(() => this.$refs.chat.scrollDown());
     }
   }
 };

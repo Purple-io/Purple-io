@@ -8,7 +8,7 @@
 
 <template>
   <div class="mesgs">
-    <div class="msg_history">
+    <div class="msg_history" ref='history'>
       <Message
         v-for='(message, index) in messages'
         :key='index'
@@ -40,10 +40,16 @@ export default {
     send() {
       this.$emit('send', this.$refs.input.value)
       this.$refs.input.value = '';
+    },
+    scrollDown() {
+      this.$refs.history.scrollTop = this.$refs.history.scrollHeight;
     }
   }
 };
 </script>
 
 <style scoped lang='scss'>
+input {
+  outline: 0;
+}
 </style>
