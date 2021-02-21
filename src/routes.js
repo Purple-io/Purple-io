@@ -20,7 +20,7 @@ module.exports = {
   // sign-up page
   'sign-up': {
     entry: 'src/pages/sign-up/index.js',
-    filename: 'sign-up.html',
+    filename: 'sign-up/index.html',
     template: 'public/index.html',
     title: 'Sign Up - PurplePOV'
   },
@@ -28,7 +28,7 @@ module.exports = {
   // sign-in page
   'sign-in': {
     entry: 'src/pages/sign-in/index.js',
-    filename: 'sign-in.html',
+    filename: 'sign-in/index.html',
     template: 'public/index.html',
     title: 'Sign In - PurplePOV'
   },
@@ -36,7 +36,7 @@ module.exports = {
   // home page
   'home': {
     entry: 'src/pages/home/index.js',
-    filename: 'home.html',
+    filename: 'home/index.html',
     template: 'public/index.html',
     title: 'Home - PurplePOV'
   },
@@ -44,7 +44,7 @@ module.exports = {
   // new-chat page
   'new-chat': {
     entry: 'src/pages/new-chat/index.js',
-    filename: 'new-chat.html',
+    filename: 'new-chat/index.html',
     template: 'public/index.html',
     title: 'New Chat - PurplePOV'
   }
