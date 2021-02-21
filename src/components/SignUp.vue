@@ -134,7 +134,7 @@ form {
   width: 500px;
   margin: 50px auto;
   border-radius: 15px;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  box-shadow: 0px 14px 150px purple;
   padding: 40px 55px 45px 55px;
 
   & > div, & > h3 {

@@ -1,4 +1,5 @@
 <template>
+  <a href='/'><img class='logo' src='/static/logo.png'/></a>
   <div>
     <SignIn/>
   </div>
@@ -23,5 +24,17 @@ export default {
 
 div {
   margin: 0 auto;
+}
+
+.logo {
+  position: absolute;
+  width: 100px;
+  margin-top: 40px;
+  margin-left: 50px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 </style>

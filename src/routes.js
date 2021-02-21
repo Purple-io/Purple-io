@@ -12,8 +12,8 @@ module.exports = {
   // index page
   'index': {
     entry: 'src/pages/index.js',
-    filename: 'sign-up/index.html',
-    template: 'public/index.html',
+    filename: 'index.html',
+    template: 'public/index-launch.html',
     title: 'PurplePOV'
   },
 

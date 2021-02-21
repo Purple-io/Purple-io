@@ -11,7 +11,7 @@
     <label for='formControlRange'>Political Affiliation</label>
     <div class='d-flex justify-content-center my-4'>
       <span class='font-weight-bold purple-text mr-2 mt-1'>Democrat</span>
-      <input ref='slider' class='border-0' type='range' min='-5' max='5' :value='default'>
+      <input ref='slider' class='border-0 input' type='range' min='-5' max='5' :value='default'>
       <span class='font-weight-bold purple-text ml-2 mt-1'>Republican</span>
     </div>
   </div>
@@ -38,5 +38,15 @@ export default {
 
 span {
   margin: 0 20px;
+}
+.input {
+  // background: linear-gradient(to right, #82CFD0 0%, #82CFD0 50%, #fff 50%, #fff 100%);
+  // // border: solid 1px #82CFD0;
+  // border-radius: 8px;
+  // height: 5px;
+  // cursor: pointer;
+  // outline: none;
+  // transition: background 450ms ease-in;
+  // -webkit-appearance: none;
 }
 </style>
