@@ -8,5 +8,6 @@
 
 module.exports = {
   lintOnSave: false,
-  pages: require('./src/routes.js')
+  pages: require('./src/routes.js'),
+  publicPath: './'
 };
