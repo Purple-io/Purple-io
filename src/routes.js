@@ -9,12 +9,20 @@
 
 module.exports = {
 
+  // index page
+  'index': {
+    entry: 'src/pages/index.js',
+    filename: 'sign-up/index.html',
+    template: 'public/index.html',
+    title: 'PurplePOV'
+  },
+
   // sign-up page
   'sign-up': {
     entry: 'src/pages/sign-up/index.js',
     filename: 'sign-up/index.html',
     template: 'public/index.html',
-    title: 'Sign Up - Purple'
+    title: 'Sign Up - PurplePOV'
   },
 
   // sign-in page
@@ -22,7 +30,7 @@ module.exports = {
     entry: 'src/pages/sign-in/index.js',
     filename: 'sign-in/index.html',
     template: 'public/index.html',
-    title: 'Sign In - Purple'
+    title: 'Sign In - PurplePOV'
   },
 
   // home page
@@ -30,7 +38,7 @@ module.exports = {
     entry: 'src/pages/home/index.js',
     filename: 'home/index.html',
     template: 'public/index.html',
-    title: 'Home - Purple'
+    title: 'Home - PurplePOV'
   },
 
   // new-chat page
@@ -38,6 +46,6 @@ module.exports = {
     entry: 'src/pages/new-chat/index.js',
     filename: 'new-chat/index.html',
     template: 'public/index.html',
-    title: 'New Chat - Purple'
+    title: 'New Chat - PurplePOV'
   }
 };
