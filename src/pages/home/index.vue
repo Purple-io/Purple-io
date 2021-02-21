@@ -10,7 +10,7 @@
         </div>
 
         <template v-for='chat in chats' :key='chat._id'>
-          <ChatSelector :ref='chat._id' :chat='chat' @click='changeActive(chat)'/>
+          <ChatSelector :ref='chat._id' :chat='chat' @click='changeActive(chat)' @close='close(chat)'/>
         </template>
           <div class="chat_list pending">
             <div class="chat_people">
@@ -146,6 +146,27 @@ export default {
 
       this.messages.push({ incoming: false, text: response.data, timestamp: moment().fromNow() });
       this.$nextTick(() => this.$refs.chat.scrollDown());
+    },
+    async close(chat) {
+      this.chats = this.chats.filter(chat => chat._id !== chat._id);
+
+      await axios.delete('http://localhost:5000/chat/deleteChat', {
+        chatId: chat._id
+      }, {
+        headers: {
+          Authorization: localStorage.getItem('token')
+        }
+      });
+
+      if (this.selectedChat._id === chat._id) {
+        this.$nextTick(() => {
+          this.selectedChat = this.chats.length ? this.chats[0] : null;
+
+          if (this.selectedChat) {
+            this.$refs[this.selectedChat._id].$el.classList.add('active_chat');
+          }
+        });
+      }
     }
   }
 };
