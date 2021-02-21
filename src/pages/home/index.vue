@@ -22,7 +22,7 @@
             </div>
           </div>
         <template v-for='p in pendingQueues' :key='p._id'>
-          <Pending :ref='p._id' :queue='p'/>
+          <Pending :ref='p._id' :queue='p' @close='closePending(p)'/>
         </template>
     </div>
     <Chat :messages='messages' @send='send' ref='chat'/>
@@ -167,6 +167,17 @@ export default {
           }
         });
       }
+    },
+    async closePending(q) {
+      this.pendingQueues = this.pendingQueues.filter(pendingQueues => pendingQueues._id !== q._id);
+
+      await axios.post('http://localhost:5000/chat/deletePendingChat', {
+        queueId: q._id
+      }, {
+        headers: {
+          Authorization: localStorage.getItem('token')
+        }
+      });
     }
   }
 };

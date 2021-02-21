@@ -13,6 +13,7 @@
         <h5>
           topic: {{ queue.issue }}
         </h5>
+        <button @click.stop='close' type="button" class="btn-close" aria-label="Close"></button>
       </div>
     </div>
   </div>
@@ -22,6 +23,11 @@
 export default {
   props: {
     queue: Object
+  },
+  methods: {
+    close() {
+      this.$emit('close');
+    }
   }
 };
 </script>
@@ -30,6 +36,15 @@ export default {
 div {
   opacity: 0.7;
   background: #DDD;
+}
+
+button {
+  display: inline !important;
+}
+.chat_ib {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 </style>
