@@ -38,15 +38,42 @@ export default {
 
 span {
   margin: 0 20px;
+  transform: translateY(-15px);
 }
+
 .input {
-  // background: linear-gradient(to right, #82CFD0 0%, #82CFD0 50%, #fff 50%, #fff 100%);
-  // // border: solid 1px #82CFD0;
-  // border-radius: 8px;
-  // height: 5px;
-  // cursor: pointer;
-  // outline: none;
-  // transition: background 450ms ease-in;
-  // -webkit-appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background-image: linear-gradient(to right, blue, red);
+  outline: none;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #ddd;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+     background-image: linear-gradient(white, white), linear-gradient(to right, blue, red);
+     background-attachment: fixed, fixed;
+     background-clip: padding-box, border-box;
+}
+
+.input::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #ddd;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+     background-image: linear-gradient(white, white), linear-gradient(to right, blue, red);
+     background-attachment: fixed, fixed;
+     background-clip: padding-box, border-box;
 }
 </style>

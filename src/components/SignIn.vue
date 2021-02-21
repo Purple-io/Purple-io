@@ -75,7 +75,7 @@ form {
   width: 500px;
   margin: 50px auto;
   border-radius: 15px;
-  box-shadow: 0px 14px 150px purple;
+  box-shadow: 0px 14px 50px purple;
   padding: 40px 55px 45px 55px;
 
   & > div, & > h3 {

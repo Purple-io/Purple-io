@@ -3,7 +3,9 @@
     <div class='selection-menu'>
         <div class="chat_list new">
           <div class="chat_people">
-            <div class="chat_ib">
+            <div class="chat_ib container">
+              <a href='/'><img class='logo' src='/static/logo.png'/></a>
+
               <button type="button" class='new' aria-label="Close" @click='newChat'>+</button>
             </div>
           </div>
@@ -225,6 +227,18 @@ export default {
   display: flex;
 }
 
+.logo {
+  width: 60px;
+  margin-top: 7px;
+  margin-left: 5px;
+  position: absolute;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
 .selection-menu {
   position: fixed;
   width: 25%;
@@ -236,17 +250,19 @@ export default {
   position: relative;
   height: 100%;
   overflow-y: scroll;
-  border-right: 2px solid grey;
-  background: #FAfAfA;
+  background: white;
+  box-shadow: 0px 5px 5px purple;
 }
 
 .pending {
   margin-top: 50px;
-  background: #FAfAfA;
 }
 .new {
-  background: #FAfAfA;
   padding: 0;
+  font-weight: 100;
+  color: #1c1f23;
+  padding-bottom: 5px;
+
   button {
     background: none;
     border: none;

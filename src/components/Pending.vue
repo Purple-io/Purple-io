@@ -35,7 +35,10 @@ export default {
 <style scoped lang='scss'>
 div {
   opacity: 0.7;
-  background: #DDD;
+  background: #EEE;
+}
+.chat_list {
+  box-shadow: 0px 0.5px 1.5px purple;
 }
 
 button {
@@ -45,6 +48,12 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.btn-close {
+  overflow: visible;
+  transform-origin: top right;
+  transform: scale(0.8);
+  float: right;
 }
 
 </style>

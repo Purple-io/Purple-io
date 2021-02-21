@@ -54,6 +54,7 @@ export default {
 
 .chat_list {
   cursor: pointer;
+  box-shadow: 0px 0.5px 1.2px purple;
 }
 
 .btn-close {
