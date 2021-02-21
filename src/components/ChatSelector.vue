@@ -12,9 +12,9 @@
       <div class="chat_ib">
         <h5>
           {{ otherUser.firstName }} {{ otherUser.lastName }}
-          <span class="chat_date">{{ 'Time' }}</span>
+          <span class="chat_date">{{ chat.updatedAt }}</span>
         </h5>
-        <p>Topic: {{ otherUser.issue }} </p><button type="button" class="btn-close" aria-label="Close"></button>
+        <p>Topic: {{ chat.issue }} </p><button type="button" class="btn-close" aria-label="Close"></button>
         <p>Affiliation: {{ otherUser.affiliation }}</p>
       </div>
     </div>

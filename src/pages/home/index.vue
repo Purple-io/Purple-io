@@ -1,13 +1,13 @@
 <template>
   <div class='home'>
     <div class='selection-menu'>
-          <div class="chat_list new">
-            <div class="chat_people">
-              <div class="chat_ib">
-                <button type="button" class='new' aria-label="Close" @click='newChat'>+</button>
-              </div>
+        <div class="chat_list new">
+          <div class="chat_people">
+            <div class="chat_ib">
+              <button type="button" class='new' aria-label="Close" @click='newChat'>+</button>
             </div>
           </div>
+        </div>
 
         <template v-for='chat in chats' :key='chat._id'>
           <ChatSelector :ref='chat._id' :chat='chat' @click='changeActive(chat)'/>
@@ -25,9 +25,8 @@
           <Pending :ref='p._id' :queue='p'/>
         </template>
     </div>
+    <Chat :messages='messages' @send='send'/>
   </div>
-
-
 </template>
 
 <script>
@@ -35,18 +34,21 @@ import axios from 'axios';
 import ChatSelector from '@/components/ChatSelector.vue';
 import Pending from '@/components/Pending.vue';
 import io from "socket.io-client";
+import Chat from '@/components/Chat.vue';
 
 export default {
   data() {
     return {
       selectedChat: null,
       chats: [],
-      pendingQueues: []
+      pendingQueues: [],
+      messages: []
     }
   },
   components: {
     ChatSelector,
-    Pending
+    Pending,
+    Chat
   },
   async mounted() {
     if (!localStorage.getItem('token')) {
@@ -65,12 +67,15 @@ export default {
     });
 
     this.chats = response.data;
-    this.$nextTick(() => {
+    this.$nextTick(async () => {
       this.selectedChat = this.chats.length ? response.data[0] : null;
 
       if (this.selectedChat) {
         this.$refs[this.selectedChat._id].$el.classList.add('active_chat');
       }
+
+      await this.updateMessages();
+
     });
 
     const responsePending = await axios.get('http://localhost:5000/chat/getAllPendingChats', {
@@ -85,19 +90,61 @@ export default {
 
 
     socket.on('received', data => {
-      console.log(data.message)
+      if (data.chatId === this.selectedChat._id) {
+        this.messages.push({ incoming: true, text: data.message })
+      }
     });
   },
   methods: {
-    changeActive(chat) {
+    async changeActive(chat) {
       if (this.selectedChat) {
         this.$refs[this.selectedChat._id].$el.classList.remove('active_chat');
       }
       this.selectedChat = chat;
       this.$refs[this.selectedChat._id].$el.classList.add('active_chat');
+      await this.updateMessages();
+
+    },
+    async updateMessages() {
+      const messages = await axios.get('http://localhost:5000/chat/getMessages', {
+        params: {
+          chatId: this.selectedChat._id
+        },
+        headers: {
+          Authorization: localStorage.getItem('token')
+        }
+      });
+      const id = JSON.parse(localStorage.getItem('user'))._id;
+      this.messages = messages.data.map(data => {
+        return {
+          text: data.content,
+          incoming: data.toUser === id,
+          timestamp: data.createdAt
+        }
+      });
     },
     newChat() {
       window.location.href = "/new-chat"
+    },
+    async send(message) {
+      socket.emit('sendMessage', {
+        messageContent: message,
+        chatId: this.selectedChat._id,
+        userId: JSON.parse(localStorage.getItem('user'))._id
+      });
+
+      console.log( message,
+        [...this.selectedChat.banned])
+      const response = await axios.post('http://localhost:5000/chat/censorSenderMessage', {
+        messageContent: message,
+        banned: this.selectedChat.banned
+      }, {
+        headers: {
+          Authorization: localStorage.getItem('token')
+        }
+      });
+
+      this.messages.push({ incoming: false, text: response.data })
     }
   }
 };
@@ -107,6 +154,7 @@ export default {
 
 .home {
   height: 100%;
+  display: flex;
 }
 
 .selection-menu {
