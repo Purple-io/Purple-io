@@ -162,7 +162,7 @@ img{ max-width:100%;}
 .headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #EEE; background: #FFF;}
 
 .recent_heading h4 {
-  color: #05728f;
+  color: #9b79c7;
   font-size: 21px;
   margin: auto;
 }
@@ -217,7 +217,7 @@ img{ max-width:100%;}
   width: 92%;
  }
  .received_withd_msg p {
-  background: #FAfAfa none repeat scroll 0 0;
+  background: #DADADA none repeat scroll 0 0;
   border-radius: 3px;
   color: #646464;
   font-size: 14px;
@@ -243,7 +243,7 @@ img{ max-width:100%;}
 }
 
  .sent_msg p {
-  background: #05728f none repeat scroll 0 0;
+  background: #9b79c7 none repeat scroll 0 0;
   border-radius: 3px;
   font-size: 14px;
   margin: 0; color:#fff;
@@ -270,11 +270,11 @@ img{ max-width:100%;}
     width: 100%;
   }
   button {
-    background: #05728f;
-    border: darken(#05728f, 10%);
+    background: #9b79c7;
+    border: darken(#9b79c7, 10%);
     white-space: nowrap;
     &:hover {
-      background: #05728f;
+      background: #9b79c7;
       opacity: 0.9;
     }
     box-shadow: 0.5px 0.5px 1.5px purple;
@@ -283,7 +283,7 @@ img{ max-width:100%;}
 
 .type_msg {border-top: 1px solid #EEE;position: relative;}
 .msg_send_btn {
-  background: #05728f none repeat scroll 0 0;
+  background: #9b79c7 none repeat scroll 0 0;
   border: medium none;
   border-radius: 50%;
   color: #fff;

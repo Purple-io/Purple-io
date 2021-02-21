@@ -5,8 +5,8 @@
           <div class="chat_people">
             <div class="chat_ib container">
               <a href='/'><img class='logo' src='/static/logo.png'/></a>
-
-              <button type="button" class='new' aria-label="Close" @click='newChat'>+</button>
+              <button type="button" class="sign-out btn btn-primary" @click='signOut'>Sign Out</button>
+              <button type="button" class='plus new' aria-label="Close" @click='newChat'>+</button>
             </div>
           </div>
         </div>
@@ -27,7 +27,7 @@
           <Pending :ref='p._id' :queue='p' @close='closePending(p)'/>
         </template>
     </div>
-    <Chat :messages='messages' @send='send' ref='chat' @generateNews='generateNews'/>
+    <Chat :messages='messages' @send='send' ref='chat' @generateNews='generateNews' :chat='selectedChat'/>
   </div>
 </template>
 
@@ -94,7 +94,8 @@ export default {
 
     socket.on('received', data => {
       if (data.chatId === this.selectedChat._id) {
-        this.messages.push({ incoming: true, text: data.message })
+        this.messages.push({ incoming: true, text: data.message, timestamp: moment(data.timestamp, 'YYYY-MM-DDThh:mmTZD').fromNow()  })
+        this.$nextTick(() => this.$refs.chat.scrollDown());
       }
     });
   },
@@ -166,15 +167,15 @@ export default {
       });
 
       if (this.selectedChat._id === chat._id) {
-        this.$nextTick(() => {
+        this.$nextTick(async () => {
           this.selectedChat = this.chats.length ? this.chats[0] : null;
 
           if (this.selectedChat) {
             this.$refs[this.selectedChat._id].$el.classList.add('active_chat');
           }
+          await this.updateMessages();
         });
       }
-      await this.updateMessages();
     },
     async closePending(q) {
       this.pendingQueues = this.pendingQueues.filter(pendingQueues => pendingQueues._id !== q._id);
@@ -215,6 +216,10 @@ export default {
 
       this.messages.push({ incoming: false, text: message, timestamp: moment().fromNow() });
       this.$nextTick(() => this.$refs.chat.scrollDown());
+    },
+    signOut() {
+      localStorage.clear();
+      window.location.href = '/sign-in';
     }
   }
 };
@@ -228,10 +233,8 @@ export default {
 }
 
 .logo {
-  width: 60px;
-  margin-top: 7px;
+  width: 65px;
   margin-left: 5px;
-  position: absolute;
   cursor: pointer;
 
   &:hover {
@@ -263,12 +266,13 @@ export default {
   color: #1c1f23;
   padding-bottom: 5px;
 
-  button {
+  .plus {
     background: none;
     border: none;
     cursor: pointer;
     font-size: 35px;
-    float: right;
+    right: 0;
+    position: absolute;
     padding: 0;
     margin: 0;
 
@@ -276,5 +280,23 @@ export default {
       opacity: 0.6;
     }
   }
+
+  .sign-out {
+    background: #9b79c7;
+    border: darken(#9b79c7, 10%);
+    white-space: nowrap;
+    &:hover {
+      background: #9b79c7;
+      opacity: 0.9;
+    }
+    margin-left: 15px;
+    box-shadow: 0.5px 0.5px 1.5px #9b79c7;
+  }
+}
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 58px;
 }
 </style>
