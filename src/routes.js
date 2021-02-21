@@ -13,7 +13,7 @@ module.exports = {
   'index': {
     entry: 'src/pages/index.js',
     filename: 'index.html',
-    template: 'public/index-launch.html',
+    template: 'public/index.html',
     title: 'PurplePOV'
   },
 

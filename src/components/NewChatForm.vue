@@ -118,7 +118,7 @@ export default {
         userId: JSON.parse(localStorage.getItem('user'))._id
       };
 
-      await axios.post('http://localhost:5000/match/find/', data)
+      await axios.post('https://purplepov-api.herokuapp.com/match/find/', data)
       .then(() => {
         window.location.href = '/home';
       })

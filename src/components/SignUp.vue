@@ -107,7 +107,7 @@ export default {
         password: this.$refs.password.value
       };
 
-      await axios.post('http://localhost:5000/register', data)
+      await axios.post('https://purplepov-api.herokuapp.com/register', data)
       .then(() => {
         window.location.href = '/home';
       })

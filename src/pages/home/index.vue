@@ -57,10 +57,10 @@ export default {
     if (!localStorage.getItem('token')) {
       window.location.href = '/sign-in';
     }
-    const socket = io("http://localhost:5000");
+    const socket = io("https://purplepov-api.herokuapp.com");
     window.socket = socket;
 
-    const response = await axios.get('http://localhost:5000/chat/getAllChats', {
+    const response = await axios.get('https://purplepov-api.herokuapp.com/chat/getAllChats', {
       params: {
         userId: JSON.parse(localStorage.getItem('user'))._id
       },
@@ -81,7 +81,7 @@ export default {
 
     });
 
-    const responsePending = await axios.get('http://localhost:5000/chat/getAllPendingChats', {
+    const responsePending = await axios.get('https://purplepov-api.herokuapp.com/chat/getAllPendingChats', {
       params: {
         userId: JSON.parse(localStorage.getItem('user'))._id
       },
@@ -114,7 +114,7 @@ export default {
         return;
       }
 
-      const messages = await axios.get('http://localhost:5000/chat/getMessages', {
+      const messages = await axios.get('https://purplepov-api.herokuapp.com/chat/getMessages', {
         params: {
           chatId: this.selectedChat._id
         },
@@ -142,7 +142,7 @@ export default {
         userId: JSON.parse(localStorage.getItem('user'))._id
       });
 
-      const response = await axios.post('http://localhost:5000/chat/censorSenderMessage', {
+      const response = await axios.post('https://purplepov-api.herokuapp.com/chat/censorSenderMessage', {
         messageContent: message,
         banned: this.selectedChat.banned
       }, {
@@ -157,7 +157,7 @@ export default {
     async close(chat) {
       this.chats = this.chats.filter(chatParam => chatParam._id !== chat._id);
 
-      await axios.post('http://localhost:5000/chat/deleteChat', {
+      await axios.post('https://purplepov-api.herokuapp.com/chat/deleteChat', {
         chatId: chat._id
       }, {
         headers: {
@@ -179,7 +179,7 @@ export default {
     async closePending(q) {
       this.pendingQueues = this.pendingQueues.filter(pendingQueues => pendingQueues._id !== q._id);
 
-      await axios.post('http://localhost:5000/chat/deletePendingChat', {
+      await axios.post('https://purplepov-api.herokuapp.com/chat/deletePendingChat', {
         queueId: q._id
       }, {
         headers: {
@@ -192,7 +192,7 @@ export default {
         this.messages = [];
         return;
       }
-      const response = await axios.get('http://localhost:5000/news', {
+      const response = await axios.get('https://purplepov-api.herokuapp.com/news', {
         params: {
           issue: this.selectedChat.issue,
           user1Id: this.selectedChat.userIds[0]._id,

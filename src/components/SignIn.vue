@@ -56,7 +56,7 @@ export default {
         password: this.$refs.password.value
       };
 
-      await axios.post('http://localhost:5000/login', data)
+      await axios.post('https://purplepov-api.herokuapp.com/login', data)
       .then(response => {
         localStorage.setItem('user', JSON.stringify(response.data.user));
         localStorage.setItem('token', response.data.token);
