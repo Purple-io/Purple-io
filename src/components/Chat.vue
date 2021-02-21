@@ -11,7 +11,7 @@
     <div class='top'>
       <div v-if='chat'>
         <h5 > {{ otherUser.firstName }} {{ otherUser.lastName }} </h5>
-        <p > | {{ format(chat.updatedAt) }} </p>
+        <p > | {{ format(chat.updatedAt) }} | banned words: {{ chat.banned.join(', ') }} </p>
       </div>
     </div>
     <div class="msg_history" ref='history'>
