@@ -35,6 +35,7 @@ import ChatSelector from '@/components/ChatSelector.vue';
 import Pending from '@/components/Pending.vue';
 import io from "socket.io-client";
 import Chat from '@/components/Chat.vue';
+import moment from 'moment';
 
 export default {
   data() {
@@ -119,7 +120,7 @@ export default {
         return {
           text: data.content,
           incoming: data.toUser === id,
-          timestamp: data.createdAt
+          timestamp: moment(data.createdAt, 'YYYY-MM-DDThh:mmTZD').fromNow()
         }
       });
     },
@@ -133,8 +134,6 @@ export default {
         userId: JSON.parse(localStorage.getItem('user'))._id
       });
 
-      console.log( message,
-        [...this.selectedChat.banned])
       const response = await axios.post('http://localhost:5000/chat/censorSenderMessage', {
         messageContent: message,
         banned: this.selectedChat.banned
@@ -144,7 +143,7 @@ export default {
         }
       });
 
-      this.messages.push({ incoming: false, text: response.data })
+      this.messages.push({ incoming: false, text: response.data, timestamp: moment().fromNow() })
     }
   }
 };

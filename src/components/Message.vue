@@ -12,7 +12,7 @@
         <div class="received_msg">
           <div class="received_withd_msg">
             <p> {{ message }}</p>
-            <span class="time_date"> Date </span></div>
+            <span class="time_date"> {{ timestamp }} </span></div>
         </div>
     </div>
 
